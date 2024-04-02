@@ -1,23 +1,21 @@
-import React from 'react';
+import * as React from "react";
 
-const Navbar = () => {
+function Navbar() {
   return (
-    <nav className="bg-[#2AD300] text-white p-4 h-20">
-        <div className='h-8 mt-5 '>
-      <div className="container mx-auto flex justify-between align-center">
-        <div className="pl-8 text-xl font-bold">SolarCompass</div> 
-        <div className="flex  w-5/12 justify-between mr-4">  
-          <a href="#" className="hover:text-gray-300">Merchandise</a>
-          <a href="#" className="hover:text-gray-300">Meet our Team</a>
-          <div className="flex space-x-4 ">
-            <a href="#" className="hover:text-gray-300">Log In</a>
-            {/* <a href="#" className="hover:text-gray-300">Sign Up</a> */}
-          </div>
-        </div>
+    
+    <div className=" pt-3 px-16 h-20 pb-9 text-white bg-[#2AD300] ">
+        <div className="h-[50%] mt-3 flex gap-5 justify-between">
+      <div className="text-3xl font-medium tracking-tighter leading-9 max-md:text-4xl">
+        SolarCompass
+      </div>
+      <div className="flex gap-x-28 justify-between mt-1.5 text-base max-md:flex-wrap max-md:max-w-full">
+        <div>Merchendise</div>
+        <div>Meet our team</div>
+        <div>Log In</div>
       </div>
       </div>
-    </nav>
+    </div>
   );
-};
+}
 
 export default Navbar;
