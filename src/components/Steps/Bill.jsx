@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { sun1,sunexit1 } from "../../assets";
 
 const statesUTs = [
   "Andhra Pradesh",
@@ -62,7 +63,7 @@ const Bill = ({ onBillSubmit }) => {
   };
 
   return (
-    <div className="w-full h-full flex flex-col items-center justify-center pt-16 ">
+    <div className="w-full h-full relative flex flex-col items-center justify-center pt-16 ">
       <div className="h-4/5 w-1/3 flex flex-col bg-gray-100  rounded-md">
         <div className="h-2/5 w-full flex flex-col items-center">
           <h1 className="text-center text-2xl font-mono w-full h pt-12 pb-5">
@@ -91,6 +92,7 @@ const Bill = ({ onBillSubmit }) => {
               <input
                 type="number"
                 value={billAmount}
+                placeholder="2000"
                 onChange={handleChangeBillAmount}
                 className="w-full bg-[#EBF9F5] focus:outline-none text-right px-4"
               />
@@ -112,6 +114,9 @@ const Bill = ({ onBillSubmit }) => {
       <div className="flex  justify-end items-end w-1/3 my-7">
       <button onClick={handleButtonClick}>Button</button>
       </div>
+
+      <img src={sun1} alt="SunIcon" className="absolute right-5 top-[20%]"/>
+      <img src={sunexit1} alt="SunIcon" className="absolute right-10 top-[40%]"/>
       
     </div>
   );
