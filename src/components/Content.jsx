@@ -1,23 +1,25 @@
-import React from 'react'
-import Tracker from './Tracker'
-import Energy from './Steps/energy'
-import Bill from './Steps/Bill'
-const Content = () => {
+import React, { useState } from 'react';
+import Tracker from './Tracker';
+import Energy from './Steps/energy';
+import Bill from './Steps/Bill';
+import Expenditure from './Steps/Expenditure';
 
-  const handleBillSubmit = (selectedStateUT, billAmount) => {
+const Content = () => {
+  const [billAmount, setBillAmount] = useState(0);
+  
+const handleBillSubmit = (selectedStateUT, billAmount) => {
     console.log(`Selected State/UT: ${selectedStateUT}, Bill Amount: ${billAmount}`);
+    setBillAmount(billAmount);
   };
 
   return (
-
-    <div className='w-full h-[700px] my-2'>
-        <Tracker/>
-        <Bill onBillSubmit={handleBillSubmit}/>
-        {/* <Energy/>       */}
+    <div className='w-full h-max my-2'>
+      <Tracker />
+      <Bill onBillSubmit={handleBillSubmit} />
+      <Expenditure billAmount={billAmount} />
     </div>
-    
+  );
+};
 
-  )
-}
+export default Content;
 
-export default Content
