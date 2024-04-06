@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { sun1,sunexit1 } from "../../assets";
+import { sun1,sunexit1 } from '../../assets/images';
 
 const statesUTs = [
   "Andhra Pradesh",

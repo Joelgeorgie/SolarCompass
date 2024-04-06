@@ -4,17 +4,19 @@ import { sun1 } from '../../assets/images';
 
 const CanvasJSChart = CanvasJSReact.CanvasJSChart;
 
-const Expenditure = (props) => {
+const Savings = (props) => {
   const currentYear = new Date().getFullYear();
   const years = Array.from({ length: 24 }, (_, i) => currentYear + i); // Generate an array of 24 years
-  
+
   // Initialize monthly and initialValue to 0
   let monthly = 0;
   let initialValue = 0;
+  let line2InitialValue = 0; // Initial value for Line 2
 
   if (props) {
     monthly = props.billAmount;
-    initialValue = monthly * 12; // Initial value for the current year, defaulting to 10000 if not provided
+    initialValue = monthly*12; // Initial value for the current year, defaulting to 10000 if not provided
+    line2InitialValue = props.initialInvestment; // Initial value for Line 2 provided by props
   }
 
   const incrementPercentage = 4; // Increment percentage
@@ -24,27 +26,37 @@ const Expenditure = (props) => {
 
   useEffect(() => {
     const line1expenditure = [];
+    let yearTotal = initialValue;
     for (let i = 0; i < years.length; i++) {
       if (i === 0) {
         line1expenditure.push(initialValue);
       } else {
         const prevYearExpenditure = line1expenditure[i - 1];
-        const newExpenditure = prevYearExpenditure * (1 + incrementPercentage / 100);
+        yearTotal = yearTotal * (1 + incrementPercentage / 100);
+        const newExpenditure = prevYearExpenditure + yearTotal;
         line1expenditure.push(newExpenditure);
       }
     }
     const roundedExpenditure = line1expenditure.map(value => Math.round(value / 10) * 10);
     setRoundedLine1Expenditure(roundedExpenditure);
-  }, [monthly]); 
+  }, [monthly]);
 
-  const line2ConstantValue = 5000; // Constant value for Line 2
+  // Calculate Line 2 values
+  const line2Data = [];
+  for (let i = 0; i < years.length; i++) {
+    const line2Value = line2InitialValue + (i * 5000);
+    line2Data.push(line2Value);
+  }
 
   const options = {
     animationEnabled: true,
     exportEnabled: false, // Disable download option
     theme: "light2",
+    credits: {
+      enabled: false // Disable watermark
+    },
     axisY: {
-      title: "Expenditure"
+      title: "Total Expenditure"
     },
     axisX: {
       title: "Year",
@@ -58,9 +70,10 @@ const Expenditure = (props) => {
     data: [
       {
         type: "line",
-        name: "Normal Bill",
+        name: "Total Normal Expense",
         showInLegend: true,
-        toolTipContent: "Year: {x}, Normal Bill: {y}",
+        color: "red", // Line 1 color
+        toolTipContent: "Year: {x}, NormalExpense: {y}",
         dataPoints: years.map((year, index) => ({
           x: year,
           y: roundedLine1Expenditure[index]
@@ -68,23 +81,16 @@ const Expenditure = (props) => {
       },
       {
         type: "line",
-        name: "Maintenance",
+        name: "Total Solar Expense",
         showInLegend: true,
-        toolTipContent: "Year: {x}, Maintenance: {y}",
+        toolTipContent: "Year: {x}, SolarExpense: {y}",
         dataPoints: years.map((year, index) => ({
           x: year,
-          y: line2ConstantValue // Constant value for Line 2
+          y: line2Data[index] // Line 2 data
         }))
       }
     ]
   };
-
-  // Create data for the table
-  const tableData = years.filter(year => year % 5 === 0).map(year => ({
-    year,
-    solarExpenditure: line2ConstantValue,
-    normalExpenditure: roundedLine1Expenditure[years.indexOf(year)]
-  }));
 
   return (
     <div className='w-full flex flex-col relative '>
@@ -97,24 +103,6 @@ const Expenditure = (props) => {
           <div className='h-[50%]'>
 
           </div>
-          <table className='w-[40%]' style={{ borderCollapse: 'collapse', border: '2px solid #2AD300', borderRadius: '10px', width: '100%', borderRadius: '10px' }}>
-            <thead>
-              <tr>
-                <th style={{ border: '2px solid #2AD300', padding: '8px', textAlign: 'left' }}>Year</th>
-                <th style={{ border: '2px solid #2AD300', padding: '8px', textAlign: 'left' }}>Solar Panel Maintenance(₹)</th>
-                <th style={{ border: '2px solid #2AD300', padding: '8px', textAlign: 'left' }}>Normal Bill (₹)</th>
-              </tr>
-            </thead>
-            <tbody>
-              {tableData.map(data => (
-                <tr key={data.year}>
-                  <td style={{ border: '2px solid #2AD300', padding: '8px', textAlign: 'left' }}>{data.year}</td>
-                  <td style={{ border: '2px solid #2AD300', padding: '8px', textAlign: 'left' }}>{data.solarExpenditure}</td>
-                  <td style={{ border: '2px solid #2AD300', padding: '8px', textAlign: 'left' }}>{data.normalExpenditure}</td>
-                </tr>
-              ))}
-            </tbody>
-          </table>
         </div>
       </div>
       <div className="flex justify-center items-end w-full mt-14 mb-10">
@@ -125,4 +113,4 @@ const Expenditure = (props) => {
   );
 };
 
-export default Expenditure;
+export default Savings;
