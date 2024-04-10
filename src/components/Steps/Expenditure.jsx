@@ -97,7 +97,7 @@ const Expenditure = (props) => {
           <div className='h-[50%]'>
 
           </div>
-          <table className='w-[40%]' style={{ borderCollapse: 'collapse', border: '2px solid #2AD300', borderRadius: '10px', width: '100%', borderRadius: '10px' }}>
+          <table className='w-[40%]' style={{ borderCollapse: 'collapse', border: '2px solid #2AD300', borderRadius: '10px', width: '100%' }}>
             <thead>
               <tr>
                 <th style={{ border: '2px solid #2AD300', padding: '8px', textAlign: 'left' }}>Year</th>
@@ -109,8 +109,8 @@ const Expenditure = (props) => {
               {tableData.map(data => (
                 <tr key={data.year}>
                   <td style={{ border: '2px solid #2AD300', padding: '8px', textAlign: 'left' }}>{data.year}</td>
-                  <td style={{ border: '2px solid #2AD300', padding: '8px', textAlign: 'left' }}>{data.solarExpenditure}</td>
-                  <td style={{ border: '2px solid #2AD300', padding: '8px', textAlign: 'left' }}>{data.normalExpenditure}</td>
+                  <td style={{ border: '2px solid #2AD300', padding: '8px', textAlign: 'left' }}>{data.solarExpenditure ? data.solarExpenditure.toLocaleString('en-IN') : ''}</td>
+                  <td style={{ border: '2px solid #2AD300', padding: '8px', textAlign: 'left' }}>{data.normalExpenditure ? data.normalExpenditure.toLocaleString('en-IN') : ''}</td>
                 </tr>
               ))}
             </tbody>

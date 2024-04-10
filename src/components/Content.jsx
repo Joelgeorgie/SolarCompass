@@ -8,7 +8,7 @@ import Invest from './Steps/Invest';
 import { electricityRates } from '../assets/data';
 
 const Content = () => {
-  const [billAmount, setBillAmount] = useState(0);
+  const [billAmount, setBillAmount] = useState(5000);
   const [units, setUnits] = useState(0);
   const [investment, setInvestment] = useState(90000)
   const [currentStep, setCurrentStep] = useState(0);
@@ -39,7 +39,7 @@ const Content = () => {
       case 3:
         return <Savings billAmount={billAmount} onNextClick={handleNextClick} initialInvestment={investment} />;
       case 4:
-        return <Invest onNextClick={handleNextClick} />;
+        return <Invest billAmount={billAmount}/>;
       default:
         return null;
     }
