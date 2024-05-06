@@ -42,7 +42,7 @@ const Energy = ({ units, onNextClick ,initialInvestment }) => {
         </div>
       </div>
       <div className="flex justify-center items-end w-1/3 mb-7">
-        <button onClick={onNextClick}>Next</button>
+        <button id="stepsbutton" onClick={onNextClick}>Next</button>
       </div>
     </div>
   );

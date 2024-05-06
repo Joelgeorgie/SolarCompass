@@ -118,7 +118,7 @@ const Expenditure = (props) => {
         </div>
       </div>
       <div className="flex justify-center items-end w-full mt-14 mb-10">
-        <button onClick={props.onNextClick}>Next</button>
+        <button id="stepsbutton" onClick={props.onNextClick}>Next</button>
       </div>
       <img src={sun1} alt="SunIcon" className="absolute right-5 top-[20%]"/>
     </div>

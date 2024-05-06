@@ -8,8 +8,7 @@ function Navbar() {
           <a href="/" className="hover:underline">SolarCompass</a>
         </div>
         <div className="flex gap-x-28 justify-between mt-1.5 text-base max-md:flex-wrap max-md:max-w-full">
-          <a href="/merchandise" className="hover:underline">Merchendise</a>
-          <a href="/team" className="hover:underline">Meet our team</a>
+          
           <a href="/login" className="hover:underline">Log In</a>
         </div>
       </div>

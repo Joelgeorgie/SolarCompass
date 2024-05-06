@@ -16,7 +16,8 @@ const Content = () => {
   const handleBillSubmit = (selectedStateUT, billAmount) => {
     console.log(`Selected State/UT: ${selectedStateUT}, Bill Amount: ${billAmount}`);
     setBillAmount(billAmount);
-    setUnits(Math.ceil(billAmount / electricityRates[selectedStateUT]))
+    setUnits(Math.ceil(billAmount / electricityRates[selectedStateUT]));
+    setInvestment(75000*Math.round(Math.ceil(billAmount / electricityRates[selectedStateUT])/100));
     handleNextClick();
   };
 

@@ -112,7 +112,7 @@ const Bill = ({ onBillSubmit }) => {
         </div>
       </div>
       <div className="flex  justify-end items-end w-1/3 my-7">
-      <button onClick={handleButtonClick}>Go</button>
+      <button id="stepsbutton" onClick={handleButtonClick}>Go</button>
       </div>
 
       <img src={sun1} alt="SunIcon" className="absolute right-5 top-[20%]"/>

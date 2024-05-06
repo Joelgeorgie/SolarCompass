@@ -50,7 +50,7 @@
   font-weight: 600;
 }
 
-button {
+#stepsbutton {
   padding: 15px 30px;
   border-radius: 20px;
   cursor: pointer;
@@ -63,14 +63,14 @@ button {
   transition: all 0.5s ease;
 }
 
-button:hover {
+#stepsbutton:hover {
   letter-spacing: 3px;
   background-color: #2AD300;
   color: hsl(0, 0%, 100%);
   box-shadow: #2AD300 0px 7px 29px 0px;
 }
 
-button:active {
+#stepsbutton:active {
   letter-spacing: 3px;
   background-color: #2AD300;
   color: hsl(0, 0%, 100%);
